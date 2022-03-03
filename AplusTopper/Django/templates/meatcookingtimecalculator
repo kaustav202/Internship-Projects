@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Meat Cooking Time Calculator | Free calculator to estimate cooking time</title>
+<meta name="description"
+    content="Meat Cooking Time Calculator" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Meat Cooking Time Calculator | Free calculator to estimate cooking time" />
+<meta property="og:description" content="Meat Cooking Time Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Meat Cooking Time Calculator | Free calculator to estimate cooking time" />
+<meta name="twitter:description"
+    content="Meat Cooking Time Calculator to estimate meat cooking time" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Meat Cooking Time Calculator" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property='og:description' content="Meat Cooking Time Calculator " />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+		});
+</script>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Meat Cooking Time Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div  style = "color : white; text-align: center; background-color:darkslateblue ; border-radius: 3px; height: 30px; margin-left:12px; margin-right: 12px;" >
+                    <strong>What are you going to cook ?</strong>
+                </div>
+                        
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Lamb  </option>
+                            {% else %}
+                            <option value="form1"> Lamb </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Beef  </option>
+                            {% else %}
+                            <option value="form2"> Beef </option>
+                            {% endif %}
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected">Chicken
+                            </option>
+                            {% else %}
+                            <option value="form3"> Chicken </option>
+                            {% endif %}
+
+
+                            {% if given_data == 'form4' %}
+                            <option value="form4" selected="selected"> Turkey
+                            </option>
+                            {% else %}
+                            <option value="form4"> Turkey </option>
+                            {% endif %}
+
+                            {% if given_data == 'form5' %}
+                            <option value="form5" selected="selected"> Fish
+                            </option>
+                            {% else %}
+                            <option value="form5"> Fish </option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    {% comment %} W for meat weight  {% endcomment %}
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Enter meat weight </strong></div>
+                        </div>
+                        <input type="number" min="0" step="0.01" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number"  class="form-control" name="W"  value="{{W1}}">
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="W_op">
+
+                          {% if W_op == 'kg' %}
+                            <option value="kg" selected="selected">kilograms (kg)</option>
+                            {% else %}
+                            <option value="kg">kilograms (kg)</option>
+                            {% endif %}
+
+                            {% if W_op == 'g' %}
+                            <option value="g" selected="selected">grams (g)</option>
+                            {% else %}
+                            <option value="g">grams (g)</option>
+                            {% endif %}
+
+                            {% if W_op == 'o' %}
+                            <option value="o" selected="selected">ounces (o)</option>
+                            {% else %}
+                            <option value="o">ounces (o)</option>
+                            {% endif %}
+                            
+                            {% if W_op == 'p' %}
+                            <option value="p" selected="selected">pounds (p)</option>
+                            {% else %}
+                            <option value="p">pounds (p)</option>
+                            {% endif %}
+                            
+                        </select>
+                    </div>
+                   
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if id == 1 %}
+
+    <div class="card" id="magnetic-force">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate {{name}} </h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Meat Cooking Time Calculation Method</strong>
+            <br>
+            <p class="btn btn-outline-secondary active">T 
+            </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        T = w * m
+                    </ul>
+
+            <strong>Input values are:-</strong>
+            
+
+            <p> Meat weight = {{W1}} {{W_op}} </p>
+            <p> Meat Type = {{type}}  </p>
+    
+           
+           
+            {% if W_op != 'g' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert meat weight {{W1}}<b><i>"{{W_op}}"</i></b> to
+                    <b><i>"grams"</i></b></b>
+                </summary>
+            </details>
+            {% endif %}
+
+
+
+            <strong>Cooking Time to the best estimate : </strong>
+            
+            <p>Time = {{time}}</p>
+
+
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            document.getElementById("clear").innerHTML = "";
+            
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
