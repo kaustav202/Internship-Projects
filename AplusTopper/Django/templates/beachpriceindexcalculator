@@ -1,0 +1,408 @@
+<!--
+
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Beach Price Index Calculator | Free Calculator to find beach price index </title>
+<meta name="description"
+    content="Beach Price Index Calculator " />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Beach Price Index Calculator | Free Calculator to find beach price index" />
+<meta property="og:description" content="Beach Price Index Calculator  " />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Beach Price Index Calculator | Free Calculator to find beach price index" />
+<meta name="twitter:description"
+    content="Beach Price Index Calculator | Free Calculator to find beach price index" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Beach Price Index Calculator " />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property='og:description' content="Beach Price Index Calculator " />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+		});
+</script>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Beach Price Index Calculator </h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div  style = "color : white; text-align: center; background-color: rgb(40, 182, 238); border-radius: 3px; height: 30px; margin-left:12px; margin-right: 12px;" >
+                    <strong>Find Beach Price Index</strong>
+                </div>
+                        
+                <div class="col-auto">
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Sunscreen </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="S"  value="{{S1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="S_op">
+
+                            {% if S_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if S_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Water </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="W"  value="{{W1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="W_op">
+
+                            {% if W_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if W_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Beer </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="B"  value="{{B1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="B_op">
+
+                            {% if B_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if B_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Ice-Cream </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="I"  value="{{I1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="I_op">
+
+                            {% if I_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if I_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Lunch </strong></div>
+                        </div>
+
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="L"  value="{{L1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="L_op">
+
+                            {% if L_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if L_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Facility Fee </strong></div>
+                        </div>
+
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Amount"  class="form-control" name="F"  value="{{F1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="F_op">
+
+                            {% if F_op == 'd' %}
+                            <option value="d" selected="selected">$</option>
+                            {% else %}
+                            <option value="d">$</option>
+                            {% endif %}
+
+                            {% if F_op == 'r' %}
+                            <option value="r" selected="selected">Rs</option>
+                            {% else %}
+                            <option value="r">Rs</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+                   
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    
+
+    <div class="card" id="magnetic-force">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate {{name}} </h2>
+        </div>
+
+        <div class="card-body">
+
+            
+            </br>
+             
+        {% if valid %}
+
+
+            <div  style = "color : white; text-align: center; background-color:darkslateblue ; border-radius: 3px; height: 30px; margin-left:12px; margin-right: 12px;font-size: 1.1rem; width:fit-content; padding-left: 20px; padding-right: 15px;" >
+                <strong> Beach Index </strong>
+            </div>
+
+            {% if res_key == 'C' %}
+            </br>
+            </br>
+            <span class="btn btn-outline-secondary active"><strong> The beach visited by you is cheaper than the cheapest beach in our Records !!</strong></span>
+            {% elif res_key == 'E' %}
+            </br>
+            </br>
+            <span class="btn btn-outline-secondary active"><strong>The beach visited by you is more expensive than the highest priced beach in our Records !!</strong></span>
+            {% else %}
+            </br>
+            </br>
+            <span style=" height: 25px; font-size: 18px; font-weight: 450px; line-height: 5px; padding-bottom: 3px;"> &nbsp;&nbsp; <b> The beach visited by you is comparable to : </b> <span style=" background-color: rgba(180, 252, 180, 0.76); font-weight: bold;"> {{res_val}} with price index {{res_key}} $ </span> &nbsp;&nbsp; </span>
+            {% endif %}
+
+
+            </br>
+            {% if res_key != 'C' and res_key != 'E' %}
+
+                </br>
+                
+                <div style="margin-left: 1%;">
+                <p style="font-weight: bold;">Beaches with Similar Pricing
+                </p>
+                <li style="margin: 8px; font-size: 1.1rem;">
+                    {{prev_key}}$ &nbsp;{{prev_val}}
+                </li>
+                <li style="margin: 8px; font-size: 1.1rem;">
+                    {{next_key}}$ &nbsp;{{next_val}}
+                </li>
+                </div>
+
+            {% endif %}
+
+
+            {% if res_key != 'C' and res_key != 'E' %}
+
+                </br>
+                </br>
+                <div style="margin-left: 1%;">
+                    <div  style = "color : white; text-align: center; background-color:maroon ; border-radius: 3px; height: 27px; margin-left:0.5%; margin-right: 12px;font-size: 1.1rem; width:fit-content; padding-left: 20px; padding-right: 15px;" >
+                        <strong> Magic Numbers </strong>
+                    </div>
+                    <p style="margin: 8px; font-size: 1.1rem;">
+                        The beach visited by you is <b>{{q1}}</b> times {{lab1}} than the cheapest beach Cua Dai Beach in Hoi An in Vietnam
+                        costing 15.65 $
+                    </p>
+                    <p style="margin: 8px; font-size: 1.1rem;">
+                        The beach visited by you is <b>{{q2}}</b> times {{lab2}} than the most expensive beach  Anse Vata in Noumea in New Caledonia
+                        costing 91.5 $
+                    </p>
+                    </div>
+            
+            {% endif %}
+                    
+            </br>
+ 
+            </br>
+            
+       
+        {% endif %}
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            document.getElementById("clear").innerHTML = "";
+            
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
+    
+
+-->
