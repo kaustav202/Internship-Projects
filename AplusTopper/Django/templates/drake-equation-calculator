@@ -1,0 +1,327 @@
+<!--
+
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Love Match Calculator | Free Calculator to find number of viable patners </title>
+<meta name="description"
+    content="Beach Price Index Calculator " />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Love Match Calculator | Free Calculator to find number of viable patners" />
+<meta property="og:description" content="Love Match Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Love Match Calculator | Free Calculator to find number of viable patners" />
+<meta name="twitter:description"
+    content="Love Match Calculator | Free Calculator to find number of viable patners" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Love Match Calculator" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property='og:description' content="Love Match Calculator" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+		});
+</script>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Love Match Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+
+                <div class="col-auto">
+
+                    <div  style = "color : white; text-align: center; background-color: rgba(14, 82, 128, 0.801); border-radius: 3px; height: 38px; margin: 40px 12px 0px 0px ; width: 100%;padding-top: 5px; font-size: 20px;" >
+                        <strong> About You </strong>
+                    </div>
+                    
+                </br>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Rate Your Attractiveness </strong></div>
+                        </div>
+
+                        <input type="number" min="1" step="1" max="5" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Scale 1 - 5"  class="form-control clf" name="A"  value="{{A1}}">
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Rate Your Social Skills </strong></div>
+                        </div>
+
+                        <input type="number" min="1" step="1" max="5" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Scale 1 - 5"  class="form-control clf" name="S"  value="{{S1}}">
+                    </div>
+
+
+                    <div  style = "color : white; text-align: center; background-color: rgba(14, 82, 128, 0.801); border-radius: 3px; height: 38px; margin: 50px 12px 0px 0px ; width: 100%;padding-top: 5px; font-size: 20px;" >
+                        <strong>About Partner Preference </strong>
+                    </div>
+
+                </br>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Gender </strong></div>
+                        </div>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="G_op">
+
+                            {% if G_op == 'm' %}
+                            <option value="m" selected="selected"> Male </option>
+                            {% else %}
+                            <option value="m"> Male </option>
+                            {% endif %}
+
+                            {% if G_op == 'f' %}
+                            <option value="f" selected="selected">Female</option>
+                            {% else %}
+                            <option value="f">Female</option>
+                            {% endif %}
+                            
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Minimum Age </strong></div>
+                        </div>
+
+                        <input type="number" min="18" step="1" max="55" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Age"  class="form-control clf" name="Amin"  value="{{Amin1}}">
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Maximum Age </strong></div>
+                        </div>
+
+                        <input type="number" min="{{Amin}}" step="1" max="55" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Age"  class="form-control clf" name="Amax"  value="{{Amax1}}">
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> University Educated ? </strong></div>
+                        </div>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="U_op">
+
+                            {% if U_op == 'y' %}
+                            <option value="y" selected="selected"> Yes </option>
+                            {% else %}
+                            <option value="y"> Yes </option>
+                            {% endif %}
+
+                            {% if U_op == 'n' %}
+                            <option value="n" selected="selected">No</option>
+                            {% else %}
+                            <option value="n">No</option>
+                            {% endif %}
+                            
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Percentage You Find Attractive </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="100" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter Percentage"  class="form-control clf" name="P"  value="{{P1}}">
+
+                    </div>
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+
+{% if id == 1 %}
+
+    <div class="card" id="magnetic-force">
+        
+        {% if valid %}
+        <div class="card-header">
+            <h2 class="h2 clf">Steps to Calculate {{name}} </h2>
+        </div>
+        {% endif %}
+
+        <div class="card-body">
+
+            
+            </br>
+             
+        {% if valid %}
+
+            <div  style = "color : black; text-align: center; background-color:white; border-radius: 3px; height: 30px; margin-left:0px; margin-right: 12px;font-size: 1.1rem; width:fit-content; padding-left: 0px; padding-right: 15px;" >
+                <strong> The number of people that are potential match for you is </strong>
+            </div>
+
+            </br>
+
+            <span><strong>  <p style="background-color: lightgreen;margin-left: 1%; width: fit-content;">{{match}} </p></strong></span>
+
+            </br>
+
+            <span><strong> Factors taken into consideration </strong></span>
+
+            <ul>
+                <li> (fa) Your Attractiveness Rating => {{fa}} </li>
+                <li> (fs) Your Social Skills => {{fs}} </li>
+                <li> (fg) Gender fraction =>
+                    {% if G_op == 'f' %}
+                        0.47
+                    {% else %}
+                        0.51
+                    {% endif %}
+                </li>
+                <li> (fu) Higher Education fraction =>
+                    {% if U_op == 'fy' %}
+                        0.23
+                    {% else %}
+                        1
+                    {% endif %}
+                </li>
+                <li> (fage) Age fraction => {{fage}} </li>
+                <li> (fpar) Fraction of people who you find attractive => {{fpar}} </li>
+                <li> (floc) Location fraction => {{floc}} </li>
+                <li> (fo) Other factors => {{fo}} </li>
+            </ul>
+
+
+         </br>
+            <span><strong style="font-size: 19px;"> R = fa * fs * fg * fu * fpar * fage * floc * fo</strong></span>
+       
+        {% endif %}
+        </div>
+
+    </div>
+
+{% endif %}
+
+</div>
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            document.getElementById("clear").innerHTML = "";
+            var inp = document.getElementsByClassName('clf');
+            for(var i = 0; i< inp.length; i++){
+                inp[i].value = "";
+            }
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
+    
+    -->
