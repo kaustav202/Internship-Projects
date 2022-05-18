@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Shoe Size Calculator | Free calculator to estimate Shoe size</title>
+<meta name="description"
+    content="Ring Size Calculator " />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Shoe Size Calculator | Free calculator to estimate Shoe size" />
+<meta property="og:description" content="Shoe Size Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Shoe Size Calculator | Free calculator to estimate Shoe size" />
+<meta name="twitter:description"
+    content="Shoe Size Calculator | Free calculator to estimate Shoe size" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Shoe Size Calculator" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property='og:description' content="Shoe Size Calculator | Free calculator to estimate Shoe size" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+		});
+</script>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Shoe Size Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                
+                
+
+
+                <div class="col-auto">
+                
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Enter Shoe Number </strong></div>
+                        </div>
+                        <input type="number" min="0" step="0.01" max="300" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number"  class="form-control clf" name="B"  value="{{B1}}">
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Country </strong></div>
+                        </div>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="c_op">
+
+
+                                {% if c_op == 'eu' %}
+                                <option value="eu" selected="selected">Europe</option>
+                                {% else %}
+                                <option value="eu">Europe </option>
+                                {% endif %}
+
+                                {% if c_op == 'ukm' %}
+                                <option value="ukm" selected="selected">UK (male)</option>
+                                {% else %}
+                                <option value="ukm">UK (male)</option>
+                                {% endif %}
+
+                                {% if c_op == 'ukf' %}
+                                <option value="ukf" selected="selected">UK (female)</option>
+                                {% else %}
+                                <option value="ukf">UK (female)</option>
+                                {% endif %}
+
+                                {% if c_op == 'usm' %}
+                                <option value="usm" selected="selected">US (male)</option>
+                                {% else %}
+                                <option value="usm">US (male)</option>
+                                {% endif %}
+
+                                {% if c_op == 'usf' %}
+                                <option value="usf" selected="selected">US (female)</option>
+                                {% else %}
+                                <option value="usf">US (female)</option>
+                                {% endif %}
+
+                                {% if c_op == 'jpm' %}
+                                <option value="jpm" selected="selected">Japan (male)</option>
+                                {% else %}
+                                <option value="jpm">Japan (male)</option>
+                                {% endif %}
+
+                                {% if c_op == 'jpf' %}
+                                <option value="jpf" selected="selected">Japan (female)</option>
+                                {% else %}
+                                <option value="jpf">Japan (female)</option>
+                                {% endif %}
+
+                                {% if c_op == 'mex' %}
+                                <option value="mex" selected="selected">Mexico</option>
+                                {% else %}
+                                <option value="mex">Mexico</option>
+                                {% endif %}
+
+                                {% if c_op == 'bra' %}
+                                <option value="bra" selected="selected">Brazil</option>
+                                {% else %}
+                                <option value="bra">Brazil</option>
+                                {% endif %}
+
+                                {% if c_op == 'aum' %}
+                                <option value="aum" selected="selected">Australia (male) </option>
+                                {% else %}
+                                <option value="aum">Australia (male) </option>
+                                {% endif %}
+
+                                {% if c_op == 'auf' %}
+                                <option value="auf" selected="selected">Australia (female) </option>
+                                {% else %}
+                                <option value="auf">Australia (female) </option>
+                                {% endif %}
+
+                                {% if c_op == 'cm' %}
+                                <option value="cm" selected="selected">centimeter (cm)</option>
+                                {% else %}
+                                <option value="cm">centimeter (cm)</option>
+                                {% endif %}
+    
+                                {% if c_op == 'in' %}
+                                <option value="in" selected="selected">inch (in)</option>
+                                {% else %}
+                                <option value="in">inch (in)</option>
+                                {% endif %}
+    
+                            </select>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Convert To </strong></div>
+                        </div>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="r_op">
+
+
+                            {% if r_op == 'eu' %}
+                            <option value="eu" selected="selected">Europe</option>
+                            {% else %}
+                            <option value="eu">Europe </option>
+                            {% endif %}
+
+                            {% if r_op == 'ukm' %}
+                            <option value="ukm" selected="selected">UK (male)</option>
+                            {% else %}
+                            <option value="ukm">UK (male)</option>
+                            {% endif %}
+
+                            {% if r_op == 'ukf' %}
+                            <option value="ukf" selected="selected">UK (female)</option>
+                            {% else %}
+                            <option value="ukf">UK (female)</option>
+                            {% endif %}
+
+                            {% if r_op == 'usm' %}
+                            <option value="usm" selected="selected">US (male)</option>
+                            {% else %}
+                            <option value="usm">US (male)</option>
+                            {% endif %}
+
+                            {% if r_op == 'usf' %}
+                            <option value="usf" selected="selected">US (female)</option>
+                            {% else %}
+                            <option value="usf">US (female)</option>
+                            {% endif %}
+
+                            {% if r_op == 'jpm' %}
+                            <option value="jpm" selected="selected">Japan (male)</option>
+                            {% else %}
+                            <option value="jpm">Japan (male)</option>
+                            {% endif %}
+
+                            {% if r_op == 'jpf' %}
+                            <option value="jpf" selected="selected">Japan (female)</option>
+                            {% else %}
+                            <option value="jpf">Japan (female)</option>
+                            {% endif %}
+
+                            {% if r_op == 'mex' %}
+                            <option value="mex" selected="selected">Mexico</option>
+                            {% else %}
+                            <option value="mex">Mexico</option>
+                            {% endif %}
+
+                            {% if r_op == 'bra' %}
+                            <option value="bra" selected="selected">Brazil</option>
+                            {% else %}
+                            <option value="bra">Brazil</option>
+                            {% endif %}
+
+                            {% if r_op == 'aum' %}
+                            <option value="aum" selected="selected">Australia (male) </option>
+                            {% else %}
+                            <option value="aum">Australia (male) </option>
+                            {% endif %}
+
+                            {% if r_op == 'auf' %}
+                            <option value="auf" selected="selected">Australia (female) </option>
+                            {% else %}
+                            <option value="auf">Australia (female) </option>
+                            {% endif %}
+
+                            {% if r_op == 'cm' %}
+                            <option value="cm" selected="selected">centimeter (cm)</option>
+                            {% else %}
+                            <option value="cm">centimeter (cm)</option>
+                            {% endif %}
+
+                            {% if r_op == 'in' %}
+                            <option value="in" selected="selected">inch (in)</option>
+                            {% else %}
+                            <option value="in">inch (in)</option>
+                            {% endif %}
+
+                        </select>
+                       
+                    </div>
+                   
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if id == 1 %}
+
+    <div class="card" id="magnetic-force">
+        
+        {% if sub %}
+
+        <div class="card-header">
+            <h2 class="h2 clf">Steps to Calculate {{name}} </h2>
+        </div>
+
+        {% endif %}
+
+        <div class="card-body">
+
+        </br>
+        </br>
+        
+            
+        </br>
+            
+        {% if sub  %} 
+            <strong style="font-size: 18px;">Input Values  </strong>
+
+        </br>
+            
+            <p> Entered Shoe Number = {{B1}} {{c_op}} </p>
+            <p> Convert to Country = {{ r_op }} </p>
+
+        </br>    
+          {% if flag == 0 %}
+            <strong style="font-size: 18px;">Appropriate Shoe Size for given country : </strong>
+            <p><b> {{s}} </b></p>
+
+            <table>
+                <tr> <td> </td>  </tr>
+
+                {% for f in l2 %}
+
+                <tr class = "rep"> 
+                    {% for v in f %}
+
+                        <td> {{v}} </td>
+
+                    {% endfor %}
+                </tr> 
+
+                {% endfor %}
+
+            </table>
+
+
+            {% else %}
+            <span class="btn btn-outline-secondary active"><strong> Please Enter a valid Shoe Size for the selected country!!</strong></span>
+          {% endif %}
+
+        {% endif %}
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    document.querySelectorAll(`table :nth-child(index)`).style.backgroundColor='red';
+    
+    {% endif %}
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            document.getElementById("clear").innerHTML = "";
+            var inp = document.getElementsByClassName('clf');
+            for(var i = 0; i< inp.length; i++){
+                inp[i].value = "";
+            }
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
