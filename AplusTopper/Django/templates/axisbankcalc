@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title> Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount</title>
+<meta name="description"
+    content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content=" Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta property="og:description" content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta name="twitter:description"
+    content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/arrow-speed-calculator.jpeg" />
+<meta property='og:description' content="Axis Bank Loan Calculator | Free calculator to Loan EMI and Amount" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+		});
+</script>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Axis Bank Loan Calculator </h1>
+        </div>
+
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div  style = "color : white; text-align: center; background-color:cornflowerblue ; border-radius: 3px; height: 30px; margin-left:12px; margin-right: 12px;" >
+                    <strong>Estimate Loan Repayment Amount and EMI </strong>
+                </div>
+
+
+                <div class="col-auto">
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Loan Amount (Rs) </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000000000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter"  class="form-control clf" name="C"  value="{{C1}}">
+
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Annual Interest Rate </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="0.01" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter"  class="form-control clf" name="I"  value="{{I1}}">
+
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Loan Duration </strong></div>
+                        </div>
+
+                        <input type="number" min="0" step="1" max="1000" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                        placeholder="Enter"  class="form-control clf" name="P"  value="{{P1}}">
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="P_op">
+
+                            {% if P_op == 'a' %}
+                            <option value="a" selected="selected">Years</option>
+                            {% else %}
+                            <option value="a">Years</option>
+                            {% endif %}
+
+                            {% if P_op == 'm' %}
+                            <option value="m" selected="selected">Months</option>
+                            {% else %}
+                            <option value="m">Months</option>
+                            {% endif %}
+                            
+                        </select>
+
+                    </div>
+                   
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if id == 1 %}
+
+    <div class="card" id="magnetic-force">
+
+    {% if valid %}
+        <div class="card-header">
+            <h2 class="h2 clf">Steps to Calculate {{name}} </h2>
+        </div>
+
+        <div class="card-body">
+
+
+            
+
+            
+            <strong style="font-size: 1.2rem;">EMI Calculation Approach </strong>
+        </br>
+    </br>
+    <p>Formula for Home Loan EMI Calculation:EMI = [P x R x (1+R)^N]/[(1+R)^N-1]</p>
+
+</br>
+
+            <p >
+                E: Equated Monthly Installment,
+            </br>
+                P: Principal or loan amount,
+             </br>
+                r: Interest rate per month (the annual interest rate is divided by 12 to get the monthly interest rate), and
+             </br>
+                n: Number of monthly instalments or loan tenure in months.
+            </br>
+            </p>
+            <br>
+                    
+
+                </br>
+    {% if inp == 1 %}
+
+            <strong style="font-weight: bold;">Input Values Are :</strong>
+            
+            </br>
+            </br>
+            <p> Loan Amount = {{C1}} Rs </p>
+            <p> Interest Rate = {{I1}}%</p>
+            <p> Duration = {{P1}} {{P_op}} </p>
+
+ 
+        </br>
+            <strong style="font-size: 1.1rem;"> LOAN EMI </strong>
+
+            </br>
+            </br>
+            <p style="font-weight: 450;"> The monthly EMI : {{emi}} Rs</p>
+            <p style="font-weight: 450;"> The total amount to be repayed : {{total}} Rs</p>
+            
+
+    {% endif %}
+        </div>
+
+    <table style="width: 100%;">
+
+        <tr> <td style="padding-left: 100px;"> Year </td> <td style="padding-left: 70px;"> Payment Made</td> <td  style="padding-left: 50px;"> Outstanding Amount </td> </tr>
+
+
+        {% for f in li %}
+
+            <tr>
+
+            {% for el in f %}
+                <td style="padding-left: 100px;"> {{el}} Rs </td>
+            {% endfor %}
+
+            </tr>
+
+        {% endfor %}
+    
+    </table>
+
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            document.getElementById("clear").innerHTML = "";
+            var inp = document.getElementsByClassName('clf');
+            for(var i = 0; i< inp.length; i++){
+                inp[i].value = "";
+            }
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
+
